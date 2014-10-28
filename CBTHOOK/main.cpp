@@ -21,6 +21,8 @@ int main() {
 					wcout << (HWND) data->wParam << endl;
 					break;
 			}
+			if (!VirtualFree(data, sizeof(callback_data), MEM_DECOMMIT))
+				throw bad_alloc();
 		}
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	};
